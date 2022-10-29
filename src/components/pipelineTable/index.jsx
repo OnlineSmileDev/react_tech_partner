@@ -10,7 +10,6 @@ import { FiArrowUp } from "react-icons/fi";
 import { pipleLines } from "../../utils";
 
 function PipelineTable(props) {
-
   return (
     <div class="flex w-full  flex-col">
       <Table>
@@ -91,7 +90,6 @@ function PipelineTable(props) {
             </TableRow>
           ))}
         </TableBody>
-        
       </Table>
     </div>
   );

@@ -5,16 +5,12 @@ import AddPipeModal from "../addPipeModal";
 function Sidebar(props) {
   const [isPipeline, setIsPipeline] = useState(true);
   const [isConnector, setIsConnector] = useState(false);
-  const [isTransformation, setIsTransformation] = useState(false);
-  const [isUpload, setIsUpload] = useState(false);
   const [isModalAddPipe, setIsModalAddPipe] = useState(false);
 
   const onClickPipelines = () => {
     setTimeout(() => {
       setIsPipeline(true);
       setIsConnector(false);
-      setIsTransformation(false);
-      setIsUpload(false);
     }, 100);
   };
 
@@ -22,8 +18,6 @@ function Sidebar(props) {
     setTimeout(() => {
       setIsPipeline(false);
       setIsConnector(true);
-      setIsTransformation(false);
-      setIsUpload(false);
     }, 100);
   };
 

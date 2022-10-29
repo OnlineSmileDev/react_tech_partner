@@ -13,7 +13,7 @@ function AddPipeModal(props) {
 
   useEffect(() => {
     setSelectedSourceConnector(null);
-  }, [])
+  }, []);
 
   const closeUsersModal = () => {
     props.closeModal();
@@ -137,7 +137,10 @@ function AddPipeModal(props) {
                   </span>
                 )}
 
-                <AiFillCaretDown color={"rgba(0,0,0,0.54)"} class="w-4 h-4 ml-6" />
+                <AiFillCaretDown
+                  color={"rgba(0,0,0,0.54)"}
+                  class="w-4 h-4 ml-6"
+                />
               </div>
               <Popover
                 id={id}
@@ -165,7 +168,10 @@ function AddPipeModal(props) {
                 <span class="text-[16px] text-[#000]/85 font-normal font-plex">
                   Select a Destination
                 </span>
-                <AiFillCaretDown color={"rgba(0,0,0,0.54)"} class="w-4 h-4 ml-6" />
+                <AiFillCaretDown
+                  color={"rgba(0,0,0,0.54)"}
+                  class="w-4 h-4 ml-6"
+                />
               </div>
             </div>
           </div>
