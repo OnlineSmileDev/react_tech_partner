@@ -8,6 +8,7 @@ import { pipleLines } from "../../utils";
 
 function AddPipeModal(props) {
   const [showSelectSource, setShowSelectSource] = useState(false);
+  const [showSelectDestination, setShowSelectDestination] = useState(false);
 
   const [selectedSourceConnector, setSelectedSourceConnector] = useState(null);
 
@@ -19,18 +20,31 @@ function AddPipeModal(props) {
     props.closeModal();
   };
 
-  const handleClick = (event) => {
+  const handleSourceConnector = (event) => {
     setShowSelectSource(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleDistinationConnector = (event) => {
+
+  }
+
+  const handleCloseSourceConnector = () => {
     setShowSelectSource(null);
+  };
+
+  const handleCloseDestinationConnector = () => {
+    setShowSelectDestination(null);
   };
 
   const open = Boolean(showSelectSource);
   const id = open ? "simple-popover" : undefined;
 
-  const onClickSourceConnector = (item) => {
+  const openDestinationConnector = Boolean(showSelectDestination);
+  const idDestinationConnector = openDestinationConnector ? "simple-popover" : undefined;
+
+
+
+  const onClickSourceConnectorItem = (item) => {
     setSelectedSourceConnector(item);
     setShowSelectSource(null);
   };
@@ -39,7 +53,7 @@ function AddPipeModal(props) {
     return (
       <div
         class="flex flex-row items-center justify-between my-1 cursor-pointer w-full"
-        onClick={() => onClickSourceConnector(item)}
+        onClick={() => onClickSourceConnectorItem(item)}
       >
         <span>{item.name}</span>
         <div class="flex flex-row items-center">
@@ -126,8 +140,8 @@ function AddPipeModal(props) {
                 Source Connector
               </span>
               <div
-                class="flex flex-row items-center justify-between py-2 px-4 w-[350px] rounded ml-2 shadow-md border border-gray-100"
-                onClick={handleClick}
+                class="flex flex-row items-center justify-between py-2 px-4 w-[350px] rounded ml-2 shadow-md border border-gray-100 cursor-pointer"
+                onClick={handleSourceConnector}
               >
                 {selectedSourceConnector ? (
                   showSourceConnectorItem(selectedSourceConnector)
@@ -146,7 +160,7 @@ function AddPipeModal(props) {
                 id={id}
                 open={open}
                 anchorEl={showSelectSource}
-                onClose={handleClose}
+                onClose={handleCloseSourceConnector}
                 anchorOrigin={{
                   vertical: "bottom",
                   horizontal: "left",
@@ -164,15 +178,39 @@ function AddPipeModal(props) {
               <span class="text-[14px] text-[#000]/85 font-normal font-plex">
                 Destination Connector
               </span>
-              <div class="flex flex-row items-center justify-between py-2 px-4 w-[350px] rounded ml-2 shadow-md border border-gray-100">
-                <span class="text-[16px] text-[#000]/85 font-normal font-plex">
-                  Select a Destination
-                </span>
+              <div
+                class="flex flex-row items-center justify-between py-2 px-4 w-[350px] rounded ml-2 shadow-md border border-gray-100 cursor-pointer"
+                onClick={handleSourceConnector}
+              >
+                {selectedSourceConnector ? (
+                  showSourceConnectorItem(selectedSourceConnector)
+                ) : (
+                  <span class="text-[16px] text-[#000]/85 font-normal font-plex">
+                    Select a Destination
+                  </span>
+                )}
+
                 <AiFillCaretDown
                   color={"rgba(0,0,0,0.54)"}
                   class="w-4 h-4 ml-6"
                 />
               </div>
+              <Popover
+                id={idDestinationConnector}
+                open={openDestinationConnector}
+                anchorEl={showSelectDestination}
+                onClose={handleCloseDestinationConnector}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+              >
+                <Typography sx={{ p: 2, width: 350 }}>
+                  <div class="flex flex-col">
+                    {pipleLines.map((row) => showSourceConnectorItem(row))}
+                  </div>
+                </Typography>
+              </Popover>
             </div>
           </div>
         </div>
