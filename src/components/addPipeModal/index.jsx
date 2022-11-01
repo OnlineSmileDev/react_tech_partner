@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import Button from "../button";
 import { AiFillCaretDown } from "react-icons/ai";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import { pipleLines } from "../../utils";
+import { pipeLines } from "../../utils";
 import icons from "../../assets/png/icons";
 import AddNewSourceConnectorModal from "../addNewSourceConnectorModal";
+import { tableList } from "../../utils";
+
+import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 function AddPipeModal(props) {
+  const [step, setStep] = useState(0);
   const [showSelectSource, setShowSelectSource] = useState(false);
   const [showSelectDestination, setShowSelectDestination] = useState(false);
 
@@ -19,7 +30,10 @@ function AddPipeModal(props) {
   const [isModalAddSourceConnector, setIsModalAddSourceConnector] =
     useState(false);
 
-  const closeUsersModal = () => {
+  const closeAddPipeModal = () => {
+    setStep(0);
+    setSelectedSourceConnector(null);
+    setSelectedDestinationConnector(null);
     props.closeModal();
   };
 
@@ -61,7 +75,7 @@ function AddPipeModal(props) {
         <span>{item.name}</span>
         <div class="flex flex-row items-center">
           <img src={item.icon} alt="icon" class="w-5 h-5" />
-          <span class="flex text-[16px] text-black font-medium font-plex ml-4">
+          <span class="flex text-[16px] text-black font-plex ml-4">
             {item.destiation}
           </span>
         </div>
@@ -84,7 +98,7 @@ function AddPipeModal(props) {
         <span>{item.name}</span>
         <div class="flex flex-row items-center">
           <img src={item.icon} alt="icon" class="w-5 h-5" />
-          <span class="flex text-[16px] text-black font-medium font-plex ml-4">
+          <span class="flex text-[16px] text-black font-plex ml-4">
             {item.destiation}
           </span>
         </div>
@@ -101,11 +115,15 @@ function AddPipeModal(props) {
     setIsModalAddSourceConnector(false);
   };
 
+  const handleStep = () => {
+    if (3 > step > 0) setStep(step + 1)
+  }
+
   const step1View = () => {
     return (
       <div class="flex flex-col w-full">
         <div class="flex flex-row w-full items-center">
-          <span class="text-[20px] text-black font-normal font-plex">
+          <span class="text-[20px] text-black font-medium font-plex">
             New Pipeline
           </span>
         </div>
@@ -158,7 +176,7 @@ function AddPipeModal(props) {
           >
             <Typography sx={{ p: 2, width: 350 }}>
               <div class="flex flex-col">
-                {pipleLines.map((row) => showSourceConnectorItem(row))}
+                {pipeLines.map((row) => showSourceConnectorItem(row))}
                 <div
                   class="border flex border-blue-200 py-1 mt-2 items-center justify-center rounded cursor-pointer"
                   onClick={handleNewSourceConnector}
@@ -203,7 +221,7 @@ function AddPipeModal(props) {
           >
             <Typography sx={{ p: 2, width: 350 }}>
               <div class="flex flex-col">
-                {pipleLines.map((row) => showDestinationConnectorItem(row))}
+                {pipeLines.map((row) => showDestinationConnectorItem(row))}
                 <div
                   class="border flex border-blue-200 py-1 mt-2 items-center justify-center rounded cursor-pointer"
                   onClick={handleNewSourceConnector}
@@ -221,11 +239,125 @@ function AddPipeModal(props) {
     );
   };
 
+  const step2View = () => {
+    return (
+      <div class="flex flex-col w-full">
+        <div class="flex flex-row w-full items-center">
+          <span class="text-[20px] text-black font-medium font-plex">
+            New Pipeline - PostgreSQL
+          </span>
+          <img src={icons.postgreIcon} alt="icon" class="w-10 h-10 ml-4" />
+        </div>
+        <div class="flex flex-row w-full items-center mt-10">
+          <span class="text-[14px] text-[#000]/60 font-normal font-plex">
+            Data Settings for
+          </span>
+          <span class="text-[14px] text-[#000] font-normal font-plex ml-2">
+            SELECTED_SERVER
+          </span>
+        </div>
+
+        <div class="flex flex-row w-full items-center mt-4">
+          <span class="text-[14px] text-[#000]/85 font-normal font-plex">
+            Table 1
+          </span>
+          <Autocomplete
+            multiple
+            id="checkboxes-tags-demo"
+            options={tableList}
+            disableCloseOnSelect
+            getOptionLabel={(option) => option.title}
+            renderOption={(props, option, { selected }) => (
+              <li {...props}>
+                <Checkbox
+                  icon={icon}
+                  checkedIcon={checkedIcon}
+                  style={{ marginRight: 8 }}
+                  checked={selected}
+                />
+                {option.title}
+              </li>
+            )}
+            style={{ 
+              marginLeft: 16,
+              width: 600,
+            }}
+            renderInput={(params) => (
+              <TextField {...params} label="Select Columns" placeholder="Favorites" />
+            )}
+          />
+        </div>
+
+        <div class="flex flex-row w-full items-center mt-4">
+          <span class="text-[14px] text-[#000]/85 font-normal font-plex">
+            Table 2
+          </span>
+          <Autocomplete
+            multiple
+            id="checkboxes-tags-demo"
+            options={tableList}
+            disableCloseOnSelect
+            getOptionLabel={(option) => option.title}
+            renderOption={(props, option, { selected }) => (
+              <li {...props}>
+                <Checkbox
+                  icon={icon}
+                  checkedIcon={checkedIcon}
+                  style={{ marginRight: 8 }}
+                  checked={selected}
+                />
+                {option.title}
+              </li>
+            )}
+            style={{ 
+              marginLeft: 16,
+              width: 600,
+            }}
+            renderInput={(params) => (
+              <TextField {...params} label="Select Columns" placeholder="Favorites" />
+            )}
+          />
+        </div>
+
+        <div class="flex flex-row w-full items-center mt-4">
+          <span class="text-[14px] text-[#000]/85 font-normal font-plex">
+            Table 3
+          </span>
+          <Autocomplete
+            multiple
+            id="checkboxes-tags-demo"
+            options={tableList}
+            disableCloseOnSelect
+            getOptionLabel={(option) => option.title}
+            renderOption={(props, option, { selected }) => (
+              <li {...props}>
+                <Checkbox
+                  icon={icon}
+                  checkedIcon={checkedIcon}
+                  style={{ marginRight: 8 }}
+                  checked={selected}
+                />
+                {option.title}
+              </li>
+            )}
+            style={{ 
+              marginLeft: 16,
+              width: 600,
+            }}
+            renderInput={(params) => (
+              <TextField {...params} label="Select Columns" placeholder="Favorites" />
+            )}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={props.isOpen}
       ariaHideApp={false}
-      onRequestClose={closeUsersModal}
+      onRequestClose={closeAddPipeModal}
       style={{
         overlay: { background: "rgba(18, 31, 62, 0.6)" },
         content: { transform: "translate(0%, 25%)", outline: "none" },
@@ -235,29 +367,41 @@ function AddPipeModal(props) {
       <div class="flex flex-col w-full border-none">
         <div class="flex h-[92px] w-full bg-white rounded-2xl absolute left-0 top-0">
           <div class="flex flex-row w-full px-6 justify-between items-center shadow-md">
-            <div class="flex flex-row">
-              <span class="text-[12px] text-white font-medium bg-[#3F51B5] flex w-6 h-6 rounded-full justify-center items-center">
+            <div class="flex flex-row items-center cursor-pointer" onClick={() => setStep(0)}>
+              <span class="text-[12px] text-white bg-[#3F51B5] flex w-6 h-6 rounded-full justify-center items-center">
                 1
               </span>
-              <span class="text-[16px] text-[#000]/80 font-medium font-plex ml-2">
-                Source & Destination
-              </span>
+              <div class="flex flex-col ml-2">
+                <span class="text-[16px] text-[#000]/80 font-plex">
+                  Source & Destination
+                </span>
+                {step === 1 && <span class="text-[12px] text-[#000]/60 font-plex">
+                  PostgreSQL -> Azure Functions
+                </span>}
+              </div>
+              
             </div>
             <hr class="w-[180px] h-0.5 bg-[#000]/10" />
-            <div class="flex flex-row">
-              <span class="text-[12px] text-[#000]/25 font-medium bg-[#000]/20 flex w-6 h-6 rounded-full justify-center items-center">
+            <div class="flex flex-row items-center cursor-pointer">
+              <span class={`text-[12px]  flex w-6 h-6 rounded-full justify-center items-center ${
+                step === 1 ? "text-white" : "text-[#000]/25"
+              } ${
+                step === 1 ? "bg-[#3F51B5]" : "bg-[#000]/20"
+              }`}>
                 2
               </span>
-              <span class="text-[16px] text-[#000]/40 font-medium font-plex ml-2">
+              <span class={`text-[16px]  font-plex ml-2 ${
+                step === 1 ? "text-[#000]/80" : "text-[#000]/40"
+              }`}>
                 Data
               </span>
             </div>
             <hr class="w-[180px] h-0.5 bg-[#000]/10" />
             <div class="flex flex-row">
-              <span class="text-[12px] text-[#000]/25 font-medium bg-[#000]/20 flex w-6 h-6 rounded-full justify-center items-center">
+              <span class="text-[12px] text-[#000]/25 bg-[#000]/20 flex w-6 h-6 rounded-full justify-center items-center">
                 3
               </span>
-              <span class="text-[16px] text-[#000]/40 font-medium font-plex ml-2">
+              <span class="text-[16px] text-[#000]/40 font-plex ml-2">
                 Ingestion Method
               </span>
             </div>
@@ -265,7 +409,8 @@ function AddPipeModal(props) {
         </div>
 
         <div class="flex w-full flex-col p-6 pb-[70px] mt-[92px]">
-          {step1View()}
+          {step === 0? step1View() : null}
+          {step === 1? step2View() : null}
         </div>
 
         <div class="flex flex-col h-[80px] w-full bg-white rounded-2xl absolute left-0 bottom-0">
@@ -273,12 +418,12 @@ function AddPipeModal(props) {
             <Button
               name="CANCEL"
               class="bg-white text-black h-[36px] w-[110px] text-[14px] border-none mr-2"
-              onClick={closeUsersModal}
+              onClick={closeAddPipeModal}
             />
             <Button
               name="CONTINUE"
               class="bg-[#3F51B5] text-white h-[36px] w-[110px] text-[14px] border-none"
-              // onClick={addUsersHandler}
+              onClick={handleStep}
             />
           </div>
         </div>

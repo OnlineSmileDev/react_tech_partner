@@ -1,12 +1,12 @@
 import icons from "../assets/png/icons";
 
-const pipleLines = [
+const pipeLines = [
   {
     name: "sql_server",
     source: "SQL Server RDS",
     destiation: "SQL Server RDS",
     status: "STOPPED",
-    last_synced: 13,
+    last_synced: "2022/01/12",
     icon: icons.sqlIcon,
   },
   {
@@ -14,7 +14,7 @@ const pipleLines = [
     source: "Azure Functions",
     destiation: "Azure Functions",
     status: "ACTIVE",
-    last_synced: 24,
+    last_synced: "2022/09/22",
     icon: icons.azureIcon,
   },
   {
@@ -22,7 +22,7 @@ const pipleLines = [
     source: "SQL Server RDS",
     destiation: "SQL Server RDS",
     status: "ACTIVE",
-    last_synced: 33,
+    last_synced: "2022/05/06",
     icon: icons.sqlIcon,
   },
   {
@@ -30,7 +30,7 @@ const pipleLines = [
     source: "Google Sheets",
     destiation: "Google Sheets",
     status: "ACTIVE",
-    last_synced: 36,
+    last_synced: "2022/11/01",
     icon: icons.googleSheetIcon,
   },
   {
@@ -38,7 +38,7 @@ const pipleLines = [
     source: "Github",
     destiation: "Github",
     status: "STOPPED",
-    last_synced: 51,
+    last_synced: "2022/08/15",
     icon: icons.githubIcon,
   },
   {
@@ -46,12 +46,20 @@ const pipleLines = [
     source: "PostgreSQL",
     destiation: "PostgreSQL",
     status: "STOPPED",
-    last_synced: 66,
+    last_synced: "2022/02/20",
     icon: icons.postgreIcon,
   },
 ];
 
+const tableList = [
+  { title: 'Column1'},
+  { title: 'Column2'},
+  { title: 'Column3'},
+  { title: 'Column4'},
+  { title: 'Column5'},
+]
 
 export {
-  pipleLines,
+  pipeLines,
+  tableList,
 }

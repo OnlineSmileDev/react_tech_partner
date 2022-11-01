@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -7,44 +7,116 @@ import {
   TableRow,
 } from "@mui/material";
 import { FiArrowUp } from "react-icons/fi";
-import { pipleLines } from "../../utils";
+import { pipeLines } from "../../utils";
 
 function PipelineTable(props) {
+  const [sortRef, setSortRef] = useState(false);
+  const [pipeLineList, setPipeLineList] = useState(pipeLines);
+
+  const handleSortTime = () => {
+    let sorted = [...pipeLineList].sort((a, b) => {
+      if (sortRef) {
+        return new Date(a.last_synced) - new Date(b.last_synced);
+      } else {
+        return new Date(b.last_synced) - new Date(a.last_synced);
+      }
+    });
+    setPipeLineList(sorted);
+    setSortRef(!sortRef);
+  };
+
+  const handleSortName = (val) => {
+    let firstVal;
+    let secondVal;
+    let sorted = [...pipeLineList].sort((a, b) => {
+      if (val === "name") {
+        firstVal = a.name;
+        secondVal = b.name;
+        if (sortRef) {
+          return firstVal > secondVal ? -1 : 1;
+        } else {
+          return firstVal > secondVal ? 1 : -1;
+        }
+      } else if (val === "source") {
+        firstVal = a.source;
+        secondVal = b.source;
+        if (sortRef) {
+          return firstVal > secondVal ? -1 : 1;
+        } else {
+          return firstVal > secondVal ? 1 : -1;
+        }
+      } else if (val === "destination") {
+        firstVal = a.destiation;
+        secondVal = b.destiation;
+        if (sortRef) {
+          return firstVal > secondVal ? -1 : 1;
+        } else {
+          return firstVal > secondVal ? 1 : -1;
+        }
+      } else {
+        firstVal = a.status;
+        secondVal = b.status;
+        if (sortRef) {
+          return firstVal > secondVal ? -1 : 1;
+        } else {
+          return firstVal > secondVal ? 1 : -1;
+        }
+      }
+    });
+    setPipeLineList(sorted);
+    setSortRef(!sortRef);
+  };
+
   return (
     <div class="flex w-full  flex-col">
       <Table>
         <TableHead class="h-[70px]">
           <TableCell align="left">
-            <span class="text-[12px] text-[#757575] font-bold font-plex">
+            <span
+              class="text-[12px] text-[#757575] font-bold font-plex cursor-pointer"
+              onClick={() => handleSortName("name")}
+            >
               Name
             </span>
           </TableCell>
           <TableCell align="left">
-            <span class="text-[12px] text-[#757575] font-bold font-plex">
+            <span
+              class="text-[12px] text-[#757575] font-bold font-plex cursor-pointer"
+              onClick={() => handleSortName("source")}
+            >
               Source
             </span>
           </TableCell>
           <TableCell align="left">
-            <span class="text-[12px] text-[#757575] font-bold font-plex">
+            <span
+              class="text-[12px] text-[#757575] font-bold font-plex cursor-pointer"
+              onClick={() => handleSortName("destination")}
+            >
               Destination
             </span>
           </TableCell>
           <TableCell align="left">
             <div class="flex flex-row items-center justify-around">
-              <span class="text-[12px] text-[#757575] font-bold font-plex mr-2">
+              <span
+                class="text-[12px] text-[#757575] font-bold font-plex mr-2 cursor-pointer"
+                onClick={() => handleSortName("status")}
+              >
                 Status
               </span>
               <FiArrowUp color="#757575" class="w-4 h-4" />
             </div>
           </TableCell>
           <TableCell>
-            <span class="text-[12px] text-[#757575] font-bold font-plex">
+            <span
+              class="text-[12px] text-[#757575] font-bold font-plex cursor-pointer"
+              onClick={handleSortTime}
+            >
               Last synced
             </span>
           </TableCell>
         </TableHead>
         <TableBody>
-          {pipleLines.map((row) => (
+          {pipeLineList.map((row) => (
             <TableRow class="h-[48px] my-2 hover:bg-[#F4F8FE]" key={row._id}>
               <TableCell>
                 <span class="flex text-[14px] text-black font-medium font-plex">

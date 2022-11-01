@@ -3,7 +3,7 @@ import React from "react";
 function Button(props) {
   return (
     <button
-      class={`w-full font-medium text-[16px] font-plex border rounded-lg  ${props.class}`}
+      class={`w-full font-medium text-[16px] font-plex border rounded  ${props.class}`}
       onClick={props.onClick}
       type={props.type}
       disabled={props.disabled}

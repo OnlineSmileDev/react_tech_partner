@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import Button from "../button";
 import { AiFillCaretDown } from "react-icons/ai";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import { pipleLines } from "../../utils";
-import icons from "../../assets/png/icons";
+import { pipeLines } from "../../utils";
 
 function AddNewSourceConnectorModal(props) {
   const [showSelectSource, setShowSelectSource] = useState(false);
@@ -34,7 +33,6 @@ function AddNewSourceConnectorModal(props) {
         class="flex flex-row items-center justify-between my-1 cursor-pointer w-full"
         onClick={() => onClickConnectorTypeItem(item)}
       >
-        {/* <span>{item.name}</span> */}
         <div class="flex flex-row items-center">
           <img src={item.icon} alt="icon" class="w-5 h-5" />
           <span class="flex text-[16px] text-black font-medium font-plex ml-4">
@@ -47,7 +45,7 @@ function AddNewSourceConnectorModal(props) {
 
   const open = Boolean(showSelectSource);
   const id = open ? "simple-popover" : undefined;
-  
+
   return (
     <Modal
       isOpen={props.isOpen}
@@ -55,7 +53,7 @@ function AddNewSourceConnectorModal(props) {
       onRequestClose={closeUsersModal}
       style={{
         overlay: { background: "rgba(18, 31, 62, 0.6)" },
-        content: { transform: "translate(0%, 45%)", outline: 'none' },
+        content: { transform: "translate(0%, 45%)", outline: "none" },
       }}
       className="flex w-[750px] h-[492px] bg-white m-auto rounded-xl border-none"
     >
@@ -114,7 +112,7 @@ function AddNewSourceConnectorModal(props) {
               >
                 <Typography sx={{ p: 2, width: 350 }}>
                   <div class="flex flex-col">
-                    {pipleLines.map((row) => showConnectorTypeItem(row))}
+                    {pipeLines.map((row) => showConnectorTypeItem(row))}
                   </div>
                 </Typography>
               </Popover>
@@ -166,7 +164,6 @@ function AddNewSourceConnectorModal(props) {
                 />
               </div>
             </div>
-            
           </div>
         </div>
 
@@ -186,7 +183,7 @@ function AddNewSourceConnectorModal(props) {
         </div>
       </div>
     </Modal>
-  )
+  );
 }
 
 export default AddNewSourceConnectorModal;
