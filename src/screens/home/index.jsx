@@ -59,8 +59,8 @@ function Home() {
               <div class="flex border rounded border-gray-400 h-[40px] w-full ml-2">
                 <input
                   type="text"
-                  value="Search by name"
-                  class="bg-transparent ml-2 w-full text-[16px] text-[#000]/50"
+                  placeholder="Search by name"
+                  class="bg-transparent ml-2 w-full text-[16px] text-[#000]/50 w-full focus:outline-none"
                 />
               </div>
             </div>
@@ -69,8 +69,8 @@ function Home() {
               <div class="flex flex-row justify-between items-center border rounded border-gray-400 h-[40px] w-full ml-2 px-2">
                 <input
                   type="text"
-                  value="All Sources"
-                  class="bg-transparent ml-2 text-[16px] text-[#000]/50"
+                  placeholder="All Sources"
+                  class="bg-transparent ml-2 text-[16px] text-[#000]/50 w-full focus:outline-none"
                 />
                 <AiFillCaretDown color={"rgba(0,0,0,0.54)"} class="w-4 h-4" />
               </div>
@@ -80,8 +80,8 @@ function Home() {
               <div class="flex flex-row justify-between items-center border rounded border-gray-400 h-[40px] w-full ml-2 px-2">
                 <input
                   type="text"
-                  value="All Status"
-                  class="bg-transparent ml-2 text-[16px] text-[#000]/50"
+                  placeholder="All Status"
+                  class="bg-transparent ml-2 text-[16px] text-[#000]/50 w-full focus:outline-none"
                 />
                 <AiFillCaretDown color={"rgba(0,0,0,0.54)"} class="w-4 h-4" />
               </div>

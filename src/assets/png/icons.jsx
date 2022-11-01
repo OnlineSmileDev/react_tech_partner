@@ -4,6 +4,7 @@ import googleSheetIcon from "./google_sheet_icon.png";
 import sqlIcon from "./sql_icon.png";
 import logoIcon from "./logo.png";
 import postgreIcon from "./postgresql.png";
+import addIcon from "./add_icon.png";
 
 const icons = {
   azureIcon,
@@ -11,7 +12,8 @@ const icons = {
   googleSheetIcon,
   sqlIcon,
   logoIcon,
-  postgreIcon
+  postgreIcon,
+  addIcon,
 };
 
 export default icons;
