@@ -6,10 +6,10 @@ import { IoMdRefresh } from "react-icons/io";
 import { HiSearch } from "react-icons/hi";
 import { MdFilterAlt } from "react-icons/md";
 import { AiFillCaretDown } from "react-icons/ai";
-import PipelineTable from "../../components/pipelineTable";
 import TablePagination from "@mui/material/TablePagination";
+import ConnectorTable from "../../components/connectorTable";
 
-function Home() {
+function Connector() {
   const navigate = useNavigate();
 
   const [page, setPage] = React.useState(0);
@@ -26,7 +26,7 @@ function Home() {
 
   return (
     <div class="flex w-full p-4">
-      <Sidebar navigate={navigate} sideIndex={1}/>
+      <Sidebar navigate={navigate} sideIndex={2}/>
       <div class="flex w-full flex-col ml-4">
         <div class="flex flex-col border border-gray-200 rounded-md p-2">
           <span class="flex text-[24px]">Pipelines</span>
@@ -88,7 +88,7 @@ function Home() {
             </div>
           </div>
           <div class="flex flex-col mt-4 border border-gray-100 pb-2 shadow-md rounded-md">
-            <PipelineTable />
+            <ConnectorTable />
             <TablePagination
               class="justify-end mt-2"
               component="div"
@@ -105,4 +105,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Connector;

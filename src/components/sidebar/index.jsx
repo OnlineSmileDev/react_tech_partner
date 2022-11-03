@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import icons from "../../assets/png/icons";
 import AddPipeModal from "../addPipeModal";
+import AddNewSourceConnectorModal from "../addNewSourceConnectorModal";
 
 function Sidebar(props) {
-  const [isPipeline, setIsPipeline] = useState(true);
-  const [isConnector, setIsConnector] = useState(false);
+  const [isPipeline, setIsPipeline] = useState(
+    props.sideIndex === 1 ? true : false
+  );
+  const [isConnector, setIsConnector] = useState(
+    props.sideIndex === 2 ? true : false
+  );
   const [isModalAddPipe, setIsModalAddPipe] = useState(false);
+  const [isModalAddConnector, setIsModalAddConnector] = useState(false);
 
   const onClickPipelines = () => {
     setTimeout(() => {
       setIsPipeline(true);
       setIsConnector(false);
+      props.navigate("/pipelines");
     }, 100);
   };
 
@@ -18,15 +25,21 @@ function Sidebar(props) {
     setTimeout(() => {
       setIsPipeline(false);
       setIsConnector(true);
+      props.navigate("/connector");
     }, 100);
   };
 
   const onClickAddPipeLine = () => {
     setIsModalAddPipe(true);
+  };
+
+  const onClickedAddConnector = () => {
+    setIsModalAddConnector(true)
   }
 
   const closeAddPipeModal = () => {
     setIsModalAddPipe(false);
+    setIsModalAddConnector(false);
   };
 
   return (
@@ -41,9 +54,9 @@ function Sidebar(props) {
       </div>
       <div class="flex flex-col mt-2 px-1">
         <div
-          class={`flex flex-col p-3 rounded-md ${isPipeline ? "border-2" : null} ${
-            isPipeline ? null : "pr-8"
-          }
+          class={`flex flex-col p-3 rounded-md cursor-pointer ${
+            isPipeline ? "border-2" : null
+          } ${isPipeline ? null : "pr-8"}
           `}
           onClick={onClickPipelines}
         >
@@ -64,7 +77,10 @@ function Sidebar(props) {
             </span>
           </div>
           {isPipeline && (
-            <div class={`flex mx-3 mt-3 bg-[#3F51B5] justify-center p-1 rounded-md cursor-pointer`} onClick={onClickAddPipeLine}>
+            <div
+              class={`flex mx-3 mt-3 bg-[#3F51B5] justify-center p-1 rounded cursor-pointer`}
+              onClick={onClickAddPipeLine}
+            >
               <span class="text-white font-normal text-[14px]">
                 + ADD PIPELINE
               </span>
@@ -73,9 +89,9 @@ function Sidebar(props) {
         </div>
 
         <div
-          class={`flex flex-col p-3 rounded-md ${isConnector ? "border-2" : null} ${
-            isConnector ? null : "pr-8"
-          }
+          class={`flex flex-col p-3 rounded-md cursor-pointer ${
+            isConnector ? "border-2" : null
+          } ${isConnector ? null : "pr-8"}
           `}
           onClick={onClickConnectors}
         >
@@ -96,7 +112,10 @@ function Sidebar(props) {
             </span>
           </div>
           {isConnector && (
-            <div class={`flex mx-3 mt-3 bg-[#3F51B5] justify-center p-1 rounded-md`}>
+            <div
+              class={`flex mx-3 mt-3 bg-[#3F51B5] justify-center p-1 rounded`}
+              onClick={onClickedAddConnector}
+            >
               <span class="text-white font-normal text-[14px]">
                 + ADD CONNECTOR
               </span>
@@ -113,10 +132,8 @@ function Sidebar(props) {
         </div>
       </div>
 
-      <AddPipeModal
-        isOpen={isModalAddPipe}
-        closeModal={closeAddPipeModal}
-      />
+      <AddPipeModal isOpen={isModalAddPipe} closeModal={closeAddPipeModal} />
+      <AddNewSourceConnectorModal isOpen={isModalAddConnector} closeModal={closeAddPipeModal} />
     </div>
   );
 }

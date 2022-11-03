@@ -9,15 +9,14 @@ import icons from "../../assets/png/icons";
 import AddNewSourceConnectorModal from "../addNewSourceConnectorModal";
 import { tableList } from "../../utils";
 
-import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-
+import Checkbox from "@mui/material/Checkbox";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -33,7 +32,7 @@ function AddPipeModal(props) {
 
   const [isModalAddSourceConnector, setIsModalAddSourceConnector] =
     useState(false);
-  
+
   const [showDeltaColumn1, setShowDeltaColumn1] = useState(true);
   const [showDeltaColumn2, setShowDeltaColumn2] = useState(true);
   const [showDeltaColumn3, setShowDeltaColumn3] = useState(true);
@@ -124,8 +123,8 @@ function AddPipeModal(props) {
   };
 
   const handleStep = () => {
-    if (2 > step > 0) setStep(step + 1)
-  }
+    if (2 > step > 0) setStep(step + 1);
+  };
 
   const step1View = () => {
     return (
@@ -182,7 +181,7 @@ function AddPipeModal(props) {
               horizontal: "left",
             }}
           >
-            <Typography sx={{ p: 2, width: 350, zIndex: -100}}>
+            <Typography sx={{ p: 2, width: 350, zIndex: -100 }}>
               <div class="flex flex-col">
                 {pipeLines.map((row) => showSourceConnectorItem(row))}
                 <div
@@ -243,9 +242,6 @@ function AddPipeModal(props) {
             </Typography>
           </Popover>
         </div>
-        
-
-        
       </div>
     );
   };
@@ -289,12 +285,16 @@ function AddPipeModal(props) {
                 {option.title}
               </li>
             )}
-            style={{ 
+            style={{
               marginLeft: 16,
               width: 600,
             }}
             renderInput={(params) => (
-              <TextField {...params} label="Select Columns" placeholder="Favorites" />
+              <TextField
+                {...params}
+                label="Select Columns"
+                placeholder="Favorites"
+              />
             )}
           />
         </div>
@@ -320,12 +320,16 @@ function AddPipeModal(props) {
                 {option.title}
               </li>
             )}
-            style={{ 
+            style={{
               marginLeft: 16,
               width: 600,
             }}
             renderInput={(params) => (
-              <TextField {...params} label="Select Columns" placeholder="Favorites" />
+              <TextField
+                {...params}
+                label="Select Columns"
+                placeholder="Favorites"
+              />
             )}
           />
         </div>
@@ -351,19 +355,23 @@ function AddPipeModal(props) {
                 {option.title}
               </li>
             )}
-            style={{ 
+            style={{
               marginLeft: 16,
               width: 600,
             }}
             renderInput={(params) => (
-              <TextField {...params} label="Select Columns" placeholder="Favorites" />
+              <TextField
+                {...params}
+                label="Select Columns"
+                placeholder="Favorites"
+              />
             )}
           />
         </div>
       </div>
     );
-  }
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  };
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const step3View = () => {
     return (
       <div class="flex flex-col w-full">
@@ -386,118 +394,166 @@ function AddPipeModal(props) {
           <span class="text-[14px] text-[#000]/85 font-normal font-plex">
             Table 1
           </span>
-          <FormControlLabel 
-            control={<Checkbox {...label} icon={<RadioButtonUncheckedIcon />} checkedIcon={<RadioButtonCheckedIcon />} checked={showDeltaColumn1}/>} 
-            label="Snashot" 
+          <FormControlLabel
+            control={
+              <Checkbox
+                {...label}
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                checked={showDeltaColumn1}
+              />
+            }
+            label="Snashot"
             class="ml-6"
             onChange={() => setShowDeltaColumn1(true)}
           />
-          <FormControlLabel 
-            control={<Checkbox {...label} icon={<RadioButtonUncheckedIcon />} checkedIcon={<RadioButtonCheckedIcon />} checked={!showDeltaColumn1}/>} 
-            label="Delta" 
+          <FormControlLabel
+            control={
+              <Checkbox
+                {...label}
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                checked={!showDeltaColumn1}
+              />
+            }
+            label="Delta"
             class="ml-6"
             onChange={() => setShowDeltaColumn1(false)}
           />
-          {!showDeltaColumn1 && <Autocomplete
-            freeSolo
-            id="free-solo-2-demo"
-            disableClearable
-            options={tableList.map((option) => option.title)}
-            style={{ 
-              marginLeft: 24,
-              width: 300,
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Select a Delta Column"
-                InputProps={{
-                  ...params.InputProps,
-                  type: 'search',
-                }}
-              />
-            )}
-          />}
+          {!showDeltaColumn1 && (
+            <Autocomplete
+              freeSolo
+              id="free-solo-2-demo"
+              disableClearable
+              options={tableList.map((option) => option.title)}
+              style={{
+                marginLeft: 24,
+                width: 300,
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select a Delta Column"
+                  InputProps={{
+                    ...params.InputProps,
+                    type: "search",
+                  }}
+                />
+              )}
+            />
+          )}
         </div>
 
         <div class="flex flex-row h-14 w-full items-center mt-4 ml-2">
           <span class="text-[14px] text-[#000]/85 font-normal font-plex">
             Table 2
           </span>
-          <FormControlLabel 
-            control={<Checkbox {...label} icon={<RadioButtonUncheckedIcon />} checkedIcon={<RadioButtonCheckedIcon />} checked={showDeltaColumn2}/>} 
-            label="Snashot" 
+          <FormControlLabel
+            control={
+              <Checkbox
+                {...label}
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                checked={showDeltaColumn2}
+              />
+            }
+            label="Snashot"
             class="ml-6"
             onChange={() => setShowDeltaColumn2(true)}
           />
-          <FormControlLabel 
-            control={<Checkbox {...label} icon={<RadioButtonUncheckedIcon />} checkedIcon={<RadioButtonCheckedIcon />} checked={!showDeltaColumn2}/>} 
-            label="Delta" 
+          <FormControlLabel
+            control={
+              <Checkbox
+                {...label}
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                checked={!showDeltaColumn2}
+              />
+            }
+            label="Delta"
             class="ml-6"
             onChange={() => setShowDeltaColumn2(false)}
           />
-          {!showDeltaColumn2 && <Autocomplete
-            freeSolo
-            id="free-solo-2-demo"
-            disableClearable
-            options={tableList.map((option) => option.title)}
-            style={{ 
-              marginLeft: 24,
-              width: 300,
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Select a Delta Column"
-                InputProps={{
-                  ...params.InputProps,
-                  type: 'search',
-                }}
-              />
-            )}
-          />}
+          {!showDeltaColumn2 && (
+            <Autocomplete
+              freeSolo
+              id="free-solo-2-demo"
+              disableClearable
+              options={tableList.map((option) => option.title)}
+              style={{
+                marginLeft: 24,
+                width: 300,
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select a Delta Column"
+                  InputProps={{
+                    ...params.InputProps,
+                    type: "search",
+                  }}
+                />
+              )}
+            />
+          )}
         </div>
 
         <div class="flex flex-row h-14 w-full items-center mt-4 ml-2">
           <span class="text-[14px] text-[#000]/85 font-normal font-plex">
             Table 3
           </span>
-          <FormControlLabel 
-            control={<Checkbox {...label} icon={<RadioButtonUncheckedIcon />} checkedIcon={<RadioButtonCheckedIcon />} checked={showDeltaColumn3}/>} 
-            label="Snashot" 
+          <FormControlLabel
+            control={
+              <Checkbox
+                {...label}
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                checked={showDeltaColumn3}
+              />
+            }
+            label="Snashot"
             class="ml-6"
             onChange={() => setShowDeltaColumn3(true)}
           />
-          <FormControlLabel 
-            control={<Checkbox {...label} icon={<RadioButtonUncheckedIcon />} checkedIcon={<RadioButtonCheckedIcon />} checked={!showDeltaColumn3}/>} 
-            label="Delta" 
+          <FormControlLabel
+            control={
+              <Checkbox
+                {...label}
+                icon={<RadioButtonUncheckedIcon />}
+                checkedIcon={<RadioButtonCheckedIcon />}
+                checked={!showDeltaColumn3}
+              />
+            }
+            label="Delta"
             class="ml-6"
             onChange={() => setShowDeltaColumn3(false)}
           />
-          {!showDeltaColumn3 && <Autocomplete
-            freeSolo
-            id="free-solo-2-demo"
-            disableClearable
-            options={tableList.map((option) => option.title)}
-            style={{ 
-              marginLeft: 24,
-              width: 300,
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Select a Delta Column"
-                InputProps={{
-                  ...params.InputProps,
-                  type: 'search',
-                }}
-              />
-            )}
-          />}
+          {!showDeltaColumn3 && (
+            <Autocomplete
+              freeSolo
+              id="free-solo-2-demo"
+              disableClearable
+              options={tableList.map((option) => option.title)}
+              style={{
+                marginLeft: 24,
+                width: 300,
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Select a Delta Column"
+                  InputProps={{
+                    ...params.InputProps,
+                    type: "search",
+                  }}
+                />
+              )}
+            />
+          )}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <Modal
@@ -509,11 +565,14 @@ function AddPipeModal(props) {
         content: { transform: "translate(0%, 25%)", outline: "none" },
       }}
       className="flex w-[944px] h-[616px] bg-white m-auto rounded-xl border-none"
-    > 
+    >
       <div class="flex flex-col w-full border-none">
         <div class="flex h-[92px] w-full bg-white rounded-2xl absolute left-0 top-0">
           <div class="flex flex-row w-full px-6 justify-between items-center shadow-md">
-            <div class="flex flex-row items-center cursor-pointer" onClick={() => setStep(0)}>
+            <div
+              class="flex flex-row items-center cursor-pointer"
+              onClick={() => setStep(0)}
+            >
               <span class="text-[12px] text-white bg-[#3F51B5] flex w-6 h-6 rounded-full justify-center items-center">
                 1
               </span>
@@ -521,49 +580,57 @@ function AddPipeModal(props) {
                 <span class="text-[16px] text-[#000]/80 font-plex">
                   Source & Destination
                 </span>
-                {step === 1 && <span class="text-[12px] text-[#000]/60 font-plex">
-                  PostgreSQL -> Azure Functions
-                </span>}
+                {step === 1 && (
+                  <span class="text-[12px] text-[#000]/60 font-plex">
+                    PostgreSQL -> Azure Functions
+                  </span>
+                )}
               </div>
-              
             </div>
             <hr class="w-[180px] h-0.5 bg-[#000]/10" />
-            <div class="flex flex-row items-center cursor-pointer" onClick={() => setStep(1)}>
-              <span class={`text-[12px]  flex w-6 h-6 rounded-full justify-center items-center ${
-                step >= 1 ? "text-white" : "text-[#000]/25"
-              } ${
-                step >= 1 ? "bg-[#3F51B5]" : "bg-[#000]/20"
-              }`}>
+            <div
+              class="flex flex-row items-center cursor-pointer"
+              onClick={() => setStep(1)}
+            >
+              <span
+                class={`text-[12px]  flex w-6 h-6 rounded-full justify-center items-center ${
+                  step >= 1 ? "text-white" : "text-[#000]/25"
+                } ${step >= 1 ? "bg-[#3F51B5]" : "bg-[#000]/20"}`}
+              >
                 2
               </span>
-              <span class={`text-[16px]  font-plex ml-2 ${
-                step >= 1 ? "text-[#000]/80" : "text-[#000]/40"
-              }`}>
+              <span
+                class={`text-[16px]  font-plex ml-2 ${
+                  step >= 1 ? "text-[#000]/80" : "text-[#000]/40"
+                }`}
+              >
                 Data
               </span>
             </div>
             <hr class="w-[180px] h-0.5 bg-[#000]/10" />
             <div class="flex flex-row items-center cursor-pointer">
-              <span class={`text-[12px]  flex w-6 h-6 rounded-full justify-center items-center ${
+              <span
+                class={`text-[12px]  flex w-6 h-6 rounded-full justify-center items-center ${
                   step === 2 ? "text-white" : "text-[#000]/25"
-                } ${
-                  step === 2 ? "bg-[#3F51B5]" : "bg-[#000]/20"
-                }`}>
-                  3
-                </span>
-                <span class={`text-[16px]  font-plex ml-2 ${
+                } ${step === 2 ? "bg-[#3F51B5]" : "bg-[#000]/20"}`}
+              >
+                3
+              </span>
+              <span
+                class={`text-[16px]  font-plex ml-2 ${
                   step === 2 ? "text-[#000]/80" : "text-[#000]/40"
-                }`}>
-                  Ingestion Method
-                </span>
+                }`}
+              >
+                Ingestion Method
+              </span>
             </div>
           </div>
         </div>
 
         <div class="flex w-full flex-col p-6 pb-[70px] mt-[92px] overflow-y-scroll">
-          {step === 0? step1View() : null}
-          {step === 1? step2View() : null}
-          {step === 2? step3View() : null}
+          {step === 0 ? step1View() : null}
+          {step === 1 ? step2View() : null}
+          {step === 2 ? step3View() : null}
         </div>
 
         <div class="flex flex-col h-[80px] w-full bg-white rounded-2xl absolute left-0 bottom-0">
